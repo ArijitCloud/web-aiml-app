@@ -15,20 +15,21 @@ function App() {
 
       chat.setInitProgressCallback((report: InitProgressReport) => {
         console.log(report.progress * 100 + "%");
-        setOutput("initialization progress: " + report.progress * 100 + "%");
+        // setOutput("initialization progress: " + report.progress * 100 + "%");
       });
 
-      const model = "RedPajama-INCITE-Chat-3B-v1-q4f32_0";
-      chat.reload(model).then(() => {
-        console.log("%cLLLM Model Ready!", "color: green", model);
-        setOutput("LLLM Model Ready!");
+      const modelName = import.meta.env.MODEL_NAME;
+      if(!modelName) return;
+      chat.reload(modelName).then(() => {
+        console.log("%cLLM Ready!", "color: green", modelName);
+        setOutput("LLM Ready!");
         chatModuleRef.current = chat;
       });
     }
 
     () => {
       //cleanup
-      chatModuleRef.current?.unload();
+      
     };
   }, []);
 

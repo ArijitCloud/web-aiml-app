@@ -1,3 +1,5 @@
+import { Reducer, useReducer } from "react";
+
 const aimlReducer = (state: AIMLState, action: AIMLAction): AIMLState => {
   //   const { modelName } = state;
   const { type, payload } = action;
@@ -24,6 +26,18 @@ const aimlReducer = (state: AIMLState, action: AIMLAction): AIMLState => {
     default:
       return state;
   }
+};
+
+const useAimlReducer = () => {
+  const [state, dispatch] = useReducer<
+    Reducer<AIMLState, AIMLAction>,
+    undefined
+  >(aimlReducer, undefined, () => ({
+    modelName: "",
+    prompts: [],
+    generatedText: [],
+  }));
+  return { state, dispatch };
 };
 
 type AIMLState = {
@@ -55,5 +69,5 @@ interface ResultReceivedAction {
   };
 }
 
-export { aimlReducer };
+export { useAimlReducer };
 export type { AIMLState, AIMLAction, InitAIMLAction };

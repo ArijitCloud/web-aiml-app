@@ -1,7 +1,7 @@
 import "./OutputArea.css";
 const OutputArea = ({ response }: OutputAreaProps) => {
   return (
-    <textarea
+    <textarea title="output" placeholder=""
       className="output-container"
       value={response}
       rows={25}

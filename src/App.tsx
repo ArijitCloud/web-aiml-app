@@ -39,35 +39,42 @@ function App() {
   }, 1000);
 
   return (
-    <main className="aiml-container">
-      <section
-        className="input-section"
-        onClick={() => inputRef.current?.focus()}
-      >
-        <TextInput
-          ref={inputRef}
-          onTextChange={debouncedInputChange}
-          isDisabled={state.isComputing}
-        />
-        <div className="input-footer">
-          <label>{`${state.prompts?.[0].length} / 1000`}</label>
-          <button type="submit" onClick={onSubmit} disabled={state.isComputing}>
-            <img src="/submit.svg" alt="submit" />
-          </button>
-        </div>
-      </section>
-      {state.hasSubmitted && (
-        <section className="output-section">
-          {state.isComputing ? (
-            <ComputingIndicator />
-          ) : state.errorMessage ? (
-            <div>{state.errorMessage}</div>
-          ) : (
-            <OutputArea response={state.generatedText} />
-          )}
+    <>
+      <h2>Summarizer</h2>
+      <main className="aiml-container">
+        <section
+          className="input-section"
+          onClick={() => inputRef.current?.focus()}
+        >
+          <TextInput
+            ref={inputRef}
+            onTextChange={debouncedInputChange}
+            isDisabled={state.isComputing}
+          />
+          <div className="input-footer">
+            <label>{`${state.prompts?.[0]?.length ?? 0} / 1000`}</label>
+            <button
+              type="submit"
+              onClick={onSubmit}
+              disabled={state.isComputing}
+            >
+              <img src="/submit.svg" alt="submit" />
+            </button>
+          </div>
         </section>
-      )}
-    </main>
+        {state.hasSubmitted && (
+          <section className="output-section">
+            {state.isComputing ? (
+              <ComputingIndicator />
+            ) : state.errorMessage ? (
+              <div>{state.errorMessage}</div>
+            ) : (
+              <OutputArea response={state.generatedText} />
+            )}
+          </section>
+        )}
+      </main>
+    </>
   );
 }
 

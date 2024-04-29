@@ -1,7 +1,6 @@
 import { Ref, forwardRef } from "react";
 import "./TextInput.css";
 
-//TODO move focus to parent and change outline style on focus
 const TextInput = forwardRef(
   (
     { onTextChange, isDisabled }: TextInputProps,
@@ -12,7 +11,7 @@ const TextInput = forwardRef(
         id="input"
         ref={ref}
         className="prompt-input"
-        placeholder="start typing..."
+        placeholder="start typing content to summarize..."
         rows={10}
         cols={90}
         maxLength={1000}

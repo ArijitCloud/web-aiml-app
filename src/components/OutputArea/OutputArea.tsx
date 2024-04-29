@@ -1,8 +1,13 @@
+import "./OutputArea.css";
 const OutputArea = ({ response }: OutputAreaProps) => {
   return (
-    <div className="output-container">
-      <textarea value={response} rows={50} cols={100} readOnly></textarea>
-    </div>
+    <textarea
+      className="output-container"
+      value={response}
+      rows={25}
+      cols={100}
+      readOnly
+    ></textarea>
   );
 };
 

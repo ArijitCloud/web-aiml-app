@@ -38,6 +38,14 @@ textarea:focus {
   outline: none;
 }
 
+.input-footer {
+  display: flex;
+  justify-content: space-between;
+}
+.input-footer label {
+  color: #212121;
+}
+
 button {
   height: 3vh;
   border: none;

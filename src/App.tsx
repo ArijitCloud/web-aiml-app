@@ -49,10 +49,12 @@ function App() {
           onTextChange={debouncedInputChange}
           isDisabled={state.isComputing}
         />
-        <label>{20/20}</label>
-        <button type="submit" onClick={onSubmit} disabled={state.isComputing}>
-          <img src="/submit.svg" alt="submit"/>
-        </button>
+        <div className="input-footer">
+          <label>{`${state.prompts?.[0].length} / 1000`}</label>
+          <button type="submit" onClick={onSubmit} disabled={state.isComputing}>
+            <img src="/submit.svg" alt="submit" />
+          </button>
+        </div>
       </section>
       {state.hasSubmitted && (
         <section className="output-section">

@@ -1,8 +1,5 @@
 import { useCallback, useEffect, useRef } from "react";
-import {
-  flattenTransformerResponseOneLevel,
-  useAimlReducer,
-} from "./common";
+import { flattenTransformerResponseOneLevel, useAimlReducer } from "./common";
 import { SummarizationOutput } from "@xenova/transformers";
 
 const flattenSummarization = (
@@ -30,8 +27,12 @@ const useAppWorker = () => {
   );
 
   useEffect(() => {
-    if (!workerRef.current)
-      workerRef.current = new Worker("./src/App.worker.ts", { type: "module" });
+    if (!workerRef.current) {
+      workerRef.current = new Worker(
+        new URL("./App.worker.ts", import.meta.url),
+        { type: "module" }
+      );
+    }
 
     workerRef.current.onmessage = (event) => {
       processSummaryOutput(event.data);

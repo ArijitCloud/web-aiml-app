@@ -8,8 +8,7 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks: (id: string) => {
-          if (id.includes("ort-web")) return "ort-min"; //separate biggest deps
-          else return "index";
+         return "index"; //split chunks later
         },
       },
     },

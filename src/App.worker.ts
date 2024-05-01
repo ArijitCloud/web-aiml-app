@@ -15,6 +15,7 @@ self.onmessage = async (event: MessageEvent<unknown>) => {
   switch (type) {
     case "compute": {
       try {
+        if(!summarizer)throw new Error("pipeline unavailable for compute");
         const data = await summarizer(payload.inputText);
         self.postMessage({ result: data });
       } catch (e) {

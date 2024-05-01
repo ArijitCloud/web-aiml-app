@@ -14,7 +14,10 @@ type TransformersPipeline<T> = T extends "summarization"
 type TransformersModelName<T> = T extends "summarization"
   ? SummaryModelName
   : unknown;
-type SummaryModelName = "Xenova/distilbart-cnn-6-6" | "Xenova/bart-large-cnn";
+type SummaryModelName =
+  | "Xenova/distilbart-cnn-6-6"
+  | "Xenova/bart-large-cnn"
+  | "Xenova/bart-large-xsum";
 
 export { initTransformers };
 export type {

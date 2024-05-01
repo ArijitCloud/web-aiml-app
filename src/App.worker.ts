@@ -14,8 +14,12 @@ self.onmessage = async (event: MessageEvent<unknown>) => {
   const { type, payload } = event.data as WorkerMessage;
   switch (type) {
     case "compute": {
-      const data = await summarizer(payload.inputText);  
-      self.postMessage(data);
+      try {
+        const data = await summarizer(payload.inputText);
+        self.postMessage({ result: data });
+      } catch (e) {
+        self.postMessage({ error: e });
+      }
       break;
     }
     default:

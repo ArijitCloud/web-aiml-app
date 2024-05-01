@@ -35,7 +35,15 @@ const useAppWorker = () => {
     }
 
     workerRef.current.onmessage = (event) => {
-      processSummaryOutput(event.data);
+      if (event.data.result) {
+        processSummaryOutput(event.data.result);
+      } else {
+        const error = event.data.error;
+        dispatch({
+          type: "errorReceived",
+          payload: { errorMessage: `${error?.name}: ${error?.message}` },
+        });
+      }
     };
 
     () => {

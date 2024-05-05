@@ -12,6 +12,7 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+  --dark-fill-color: #000;
 }
 
 a {
@@ -36,4 +37,9 @@ h1 {
   line-height: 1.1;
 }
 
-
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --dark-fill-color: #fff;
+  }
+}

@@ -1,0 +1,12 @@
+button {
+  height: 3vh;
+  border: none;
+  cursor: pointer;
+  background: none;
+}
+
+button .submit-icon {
+  width: 100%;
+  height: 100%;
+  fill: var(--dark-fill-color);
+}

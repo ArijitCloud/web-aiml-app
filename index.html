@@ -1,13 +1,32 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="icon" type="image/png" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>AI ML in the web</title>
   </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    <script>
+      window.onload = function () {
+        var ua = window.navigator.userAgent;
+        if (
+          !(
+            ua.indexOf("Chrome/") > -1 &&
+            parseInt(ua.match(/Chrome\/(\d+)/)[1]) >= 121
+          ) &&
+          !(
+            ua.indexOf("Edg/") > -1 &&
+            parseInt(ua.match(/Edg\/(\d+)/)[1]) >= 122
+          )
+        ) {
+          alert(
+            "This application is only supported in Chrome v121, Edge v122, or later."
+          );
+        }
+      };
+    </script>
   </body>
 </html>

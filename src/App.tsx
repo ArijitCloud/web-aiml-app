@@ -4,6 +4,7 @@ import { WorkerMessage } from "./types/WorkerMessage";
 import { useDebouncedCallback } from "./common";
 import { useAppWorker } from "./useAppWorker";
 import React, { useEffect, useRef } from "react";
+import { SubmitButton } from "./components/SubmitButton/SubmitButton";
 
 function App() {
   const { state, dispatch, workerRef } = useAppWorker();
@@ -18,7 +19,6 @@ function App() {
       | React.MouseEvent<HTMLButtonElement>
       | React.KeyboardEvent<HTMLButtonElement>
   ) => {
-    event.stopPropagation(); //avoid triggering focus event on section
     if (state.prompts?.length > 0) {
       dispatch({ type: "startCompute", payload: undefined });
       const message: WorkerMessage = {
@@ -26,6 +26,7 @@ function App() {
         payload: { inputText: state.prompts[0] },
       };
       workerRef.current?.postMessage(message);
+      event.preventDefault(); //avoid triggering focus event on section
     }
   };
 
@@ -53,13 +54,7 @@ function App() {
           />
           <div className="input-footer">
             <label>{`${state.prompts?.[0]?.length ?? 0} / 1000`}</label>
-            <button
-              type="submit"
-              onClick={onSubmit}
-              disabled={state.isComputing}
-            >
-              <img src="/submit.svg" alt="submit" />
-            </button>
+            <SubmitButton onSubmit={onSubmit} isComputing={state.isComputing} />
           </div>
         </section>
         {state.hasSubmitted && (

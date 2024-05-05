@@ -5,7 +5,7 @@ const OutputArea = ({ response }: OutputAreaProps) => {
       className="output-container"
       value={response}
       rows={25}
-      cols={100}
+      cols={90}
       readOnly
     ></textarea>
   );
